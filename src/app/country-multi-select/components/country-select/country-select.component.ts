@@ -45,12 +45,17 @@ export class CountrySelectComponent extends CountryMultiSelectBaseComponent impl
     this.checkViewportHeight(this.unifiedCountriesList);
   }
 
+  override unselectAll(): void {
+    super.unselectAll();
+    this.selectionChanged.emit([]);
+  }
+
   override select(country: string): void {
     super.select(country);
     this.selectionChanged.emit(Array.from(this.selectedItemsSet));
   }
 
-  trackSearchTermChanges(): void {
+  protected override trackSearchTermChanges(): void {
     const searchFormControlChangesSubscription: Subscription = this.searchFormControl.valueChanges.pipe(
       distinctUntilChanged()
     ).subscribe({
@@ -68,7 +73,7 @@ export class CountrySelectComponent extends CountryMultiSelectBaseComponent impl
     this.subscriptions.add(searchFormControlChangesSubscription);
   }
 
-  private checkForInitiallySelectedAndSelect(): void {
+  protected override checkForInitiallySelectedAndSelect(): void {
 
     if (!this.config.selectedCountriesList) {
       return;

@@ -2,7 +2,6 @@
      *ngIf="config && config.countriesList.length">
 
   <app-country-select
-    #countrySelectComponent
     [config]="config"
     (selectionChanged)="countriesSelectionChanges($event)">
   </app-country-select>

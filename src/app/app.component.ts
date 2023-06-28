@@ -22,8 +22,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   selectConfigs: CountryMultiSelectConfigsInterface<CountryInterface> = {
     countriesList: [],
-    selectedCountriesList: ['Andorra', 'Ukraine'],
-    selectedCitiesList: ['Lviv', 'Sambir', 'les Escaldes']
+    selectedCountriesList: ['India', 'Ukraine'],
+    selectedCitiesList: ['kiev', 'Sumy', 'Delhi', 'Wok']
   }
   private subscriptions: Subscription = new Subscription();
 

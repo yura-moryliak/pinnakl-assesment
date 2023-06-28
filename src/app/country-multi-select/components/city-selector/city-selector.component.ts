@@ -43,6 +43,7 @@ export class CitySelectorComponent extends CountryMultiSelectBaseComponent imple
 
     this.trackSearchTermChanges();
     this.checkViewportHeight(this.citiesList);
+    this.checkForInitiallySelectedAndSelect();
   }
 
   override openDropdown(): void {
@@ -52,16 +53,12 @@ export class CitySelectorComponent extends CountryMultiSelectBaseComponent imple
     this.renderer.addClass(this.elementRef.nativeElement, 'opened');
   }
 
-  unselect(): void {
-    this.unselectCountry.emit(this.country);
-  }
-
   override closeDropdown(): void {
     super.closeDropdown();
     this.renderer.removeClass(this.elementRef.nativeElement, 'opened');
   }
 
-  trackSearchTermChanges(): void {
+  protected override trackSearchTermChanges(): void {
     const searchFormControlChangesSubscription: Subscription = this.searchFormControl.valueChanges.pipe(
       distinctUntilChanged()
     ).subscribe({
@@ -77,5 +74,26 @@ export class CitySelectorComponent extends CountryMultiSelectBaseComponent imple
     });
 
     this.subscriptions.add(searchFormControlChangesSubscription);
+  }
+
+  protected override checkForInitiallySelectedAndSelect(): void {
+
+    if (!this.config.selectedCitiesList) {
+      return;
+    }
+
+    if (this.config.selectedCitiesList && !this.config.selectedCitiesList.length) {
+      this.selectedItemsSet = new Set();
+    }
+
+    const filteredCountriesList: CountryInterface[] = this.citiesList.filter((city: CountryInterface) => {
+      return this.config.selectedCitiesList?.some((selectedCity: string) =>
+        city.name.toLowerCase().includes(selectedCity.toLowerCase())
+      )
+    });
+
+    this.selectedItemsSet = new Set(
+      filteredCountriesList.map((filtered: CountryInterface) => filtered.name)
+    );
   }
 }

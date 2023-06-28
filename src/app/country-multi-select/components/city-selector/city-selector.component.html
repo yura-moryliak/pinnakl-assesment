@@ -2,8 +2,8 @@
 
   <div class="select-badges">
     <span>Available cities in <strong>{{ country }}</strong> <b>{{ citiesList.length ? citiesList.length : 0 }}</b></span>
-    <span>Selected countries <b>{{ selectedItemsSet.size }}</b> of <b>{{ citiesList.length }}</b></span>
-    <a (click)="unselect()">Unselect</a>
+    <span>Selected cities <b>{{ selectedItemsSet.size }}</b> of <b>{{ citiesList.length }}</b></span>
+    <a (click)="unselectAll()">Unselect</a>
   </div>
 
   <div class="select-input-control">
@@ -32,7 +32,7 @@
         <button *cdkVirtualFor="let city of citiesList;"
                 (click)="select(city.name)"
                 [ngClass]="{ 'selected': city.name | isSelected : selectedItemsSet }">
-          {{ city.name }} / {{ city.subcountry }}
+          {{ city.name }}
         </button>
 
       </cdk-virtual-scroll-viewport>
@@ -40,13 +40,13 @@
     </ng-container>
 
     <ng-template #emptyList>
-      <span class="empty-list-badge">Country not found ot does not exist</span>
+      <span class="empty-list-badge">City was not found or does not exist</span>
     </ng-template>
 
   </div>
 
-  <ul *ngIf="selectedItemsSet.size">
-    <li *ngFor="let a of selectedItemsSet">{{ a }}</li>
+  <ul class="selected-items-list" *ngIf="selectedItemsSet.size">
+    <li class="selected-item" *ngFor="let selectedItem of selectedItemsSet">{{ selectedItem }}</li>
   </ul>
 
 </div>

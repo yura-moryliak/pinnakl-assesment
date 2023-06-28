@@ -5,15 +5,6 @@ app-city-select {
 
   @include country-multi-select();
 
-  .select-badges {
-
-    a {
-      font-size: 12px;
-      cursor: pointer;
-    }
-
-  }
-
   &.opened {
     & {
       position: relative;

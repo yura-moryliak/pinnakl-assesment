@@ -38,6 +38,10 @@ export abstract class CountryMultiSelectBaseComponent implements OnDestroy {
     this.clearSearch();
   }
 
+  protected unselectAll(): void {
+    this.selectedItemsSet = new Set();
+  }
+
   protected closeDropdown(): void {
     this.isDropdownOpened = false;
   }
@@ -59,4 +63,5 @@ export abstract class CountryMultiSelectBaseComponent implements OnDestroy {
   }
 
   protected abstract trackSearchTermChanges(): void;
+  protected abstract checkForInitiallySelectedAndSelect(): void;
 }

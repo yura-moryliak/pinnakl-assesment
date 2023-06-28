@@ -18,6 +18,11 @@
         font-size: 12px;
       }
 
+      a {
+        font-size: 12px;
+        cursor: pointer;
+      }
+
       strong {
         color: firebrick;
         margin-right: 5px;
@@ -104,6 +109,15 @@
         font-size: 12px;
         font-style: italic;
       }
+    }
+
+    .selected-items-list {
+      list-style-type: square;
+
+      .selected-item {
+        font-size: 12px;
+      }
+
     }
   }
 
