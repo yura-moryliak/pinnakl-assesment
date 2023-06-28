@@ -1,0 +1,28 @@
+@import "../../assets/country-multi-select.mixin";
+
+app-city-select {
+  display: block;
+
+  @include country-multi-select();
+
+  .select-badges {
+
+    a {
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+  }
+
+  &.opened {
+    & {
+      position: relative;
+      z-index: 8888;
+
+      .select-container {
+        z-index: 8888;
+      }
+    }
+  }
+
+}

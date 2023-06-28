@@ -1,0 +1,16 @@
+@import "../../assets/country-multi-select.mixin";
+
+app-country-select {
+  display: block;
+  margin-bottom: 50px;
+  position: relative;
+  z-index: 11;
+
+  @include country-multi-select();
+
+  // Override
+  .select-container {
+    z-index: 22;
+  }
+
+}

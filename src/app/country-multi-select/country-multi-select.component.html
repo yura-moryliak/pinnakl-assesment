@@ -1,0 +1,20 @@
+<div class="country-multi-select-container"
+     *ngIf="config && config.countriesList.length">
+
+  <app-country-select
+    #countrySelectComponent
+    [config]="config"
+    (selectionChanged)="countriesSelectionChanges($event)">
+  </app-country-select>
+
+  <ng-container *ngIf="selectedCountriesList.length">
+
+    <app-city-select *ngFor="let country of selectedCountriesList"
+                     [config]="config"
+                     [country]="country"
+                     (unselectCountry)="unselectCountry($event)">
+    </app-city-select>
+
+  </ng-container>
+
+</div>
