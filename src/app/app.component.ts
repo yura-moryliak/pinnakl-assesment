@@ -28,11 +28,13 @@ export class AppComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription = new Subscription();
 
   ngOnInit(): void {
-    this.httpClient.get<CountryInterface[]>('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json').subscribe({
+    const dataSourceSubscription: Subscription = this.httpClient.get<CountryInterface[]>('https://pkgstore.datahub.io/core/world-cities/world-cities_json/data/5b3dd46ad10990bca47b04b4739a02ba/world-cities_json.json').subscribe({
       next: (countriesList: CountryInterface[]): void => {
         this.selectConfigs = { ...this.selectConfigs, countriesList };
       }
     });
+
+    this.subscriptions.add(dataSourceSubscription);
   }
 
   ngOnDestroy(): void {
