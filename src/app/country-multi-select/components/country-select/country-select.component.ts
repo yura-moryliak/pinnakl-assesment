@@ -26,8 +26,6 @@ export class CountrySelectComponent extends CountryMultiSelectBaseComponent impl
 
   @Input({ required: true }) config!: CountryMultiSelectConfigsInterface<CountryInterface>;
 
-  @Output() selectionChanged: EventEmitter<string[]> = new EventEmitter<string[]>();
-
   unifiedCountriesList: string[] = [];
 
   private unifiedCountriesListCopy: string[] = [];

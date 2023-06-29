@@ -1,4 +1,4 @@
-import {Component, OnDestroy, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnDestroy, Output, ViewChild} from '@angular/core';
 import {CdkVirtualScrollViewport} from '@angular/cdk/scrolling';
 import {FormControl} from '@angular/forms';
 
@@ -9,6 +9,8 @@ import {Subscription} from 'rxjs';
   standalone: true
 })
 export abstract class CountryMultiSelectBaseComponent implements OnDestroy {
+
+  @Output() selectionChanged: EventEmitter<string[]> = new EventEmitter<string[]>();
 
   @ViewChild('cdkVirtualScrollViewport', {static: false, read: CdkVirtualScrollViewport})
   cdkVirtualScrollViewport!: CdkVirtualScrollViewport;

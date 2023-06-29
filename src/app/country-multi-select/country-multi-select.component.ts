@@ -34,8 +34,4 @@ export class CountryMultiSelectComponent {
     this.countrySelectComponent.config.selectedCountriesList = this.selectedCountriesList;
     this.countrySelectComponent.ngOnInit();
   }
-
-  test(event: CountryInterface[]) {
-    console.log(event);
-  }
 }
